@@ -1,6 +1,6 @@
 import rclpy                #ROS 2のクライアントのためのライブラリ
 from rclpy.node import Node #ノードを実装するためのNodeクラス（クラスは第10回で）
-from person_msgs.msg import Query   #通信の型（16ビットの符号付き整数）
+from person_msgs.msg import Person   #通信の型（16ビットの符号付き整数）
 
 rclpy.init() 
 node = Node("talker")
@@ -16,5 +16,5 @@ def cb():
     n += 1
 
 def main():
-    srv = node.create_service(Query, "query", cb)
+    node.create_timer(0.5, cb)
     rclpy.spin(node)            #実行（無限ループ）
